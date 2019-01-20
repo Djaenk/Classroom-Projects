@@ -1,0 +1,12 @@
+GAME STATS
+*****************************************
+PLAYER          HITS     AT-BATS  AVERAGE
+Amazing Amy     7        10       0.700
+Bozo Bob        4        10       0.400
+Quick Carl      9        10       0.900
+Dizzy Diana     1        10       0.100
+Average Ed      6        10       0.600
+Fast Francis    8        10       0.800
+So-So Sarah     4        10       0.400
+Hitter Hank     9        10       0.900
+Dizzy Izzy      0        10       0.000

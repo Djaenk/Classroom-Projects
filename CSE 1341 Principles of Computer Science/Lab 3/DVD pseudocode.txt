@@ -1,0 +1,47 @@
+int dvd = 10
+int cash = 100
+while(true)
+print(menu stuff, choose from 1,2,3,4,9)
+int choice = scanner.nextInt()
+if choice == 1{
+    print(how many dvds do you want)
+    int dvdstobuy = scanner.nextInt()
+    if dvdstobuy * 9 <= cash{
+        dvd =+ dvdstobuy
+        cash =- dvdstobuy * 10
+        print(bought dvdstobuy dvds)
+        print(Number of DVDs: %d)
+        print(Cash available: %d)
+    }
+    else {
+        print(You do not have enough money for this transaction)
+    }
+}
+elseif choice == 2{
+    print(how many do you want to sell)
+    int dvdstosell = scanner.nextInt()
+    if dvdstosell <= dvd{
+        dvd =- dvdstosell
+        cash =+ dvdstosell * 10
+        print(how many dvds and how much cash you have left)
+    }
+    else(
+        print(you don't have enough dvds for this transaction)
+    )
+}
+elseif choice == 3{
+    print(Number of dvds:)
+}
+elseif choice == 4{
+    print (Cash available:)
+}
+elseif choice == 9{
+    print(Thanks for shopping come again)
+    break;
+}
+else {
+    print(pick a valid choice)
+}
+
+to integrate methods take the block of each if/elseif/else statement and use it to define its respective methods
+the logic for performing an operation after a choice is selected should remain the same
