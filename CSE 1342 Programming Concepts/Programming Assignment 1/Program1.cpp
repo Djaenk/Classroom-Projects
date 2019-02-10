@@ -6,9 +6,9 @@
 
 long long int stringToDecimal(std::string string) {
 	reverse(string.begin(), string.end());
-	int dec = 0;
+	long long int dec = 0;
 	for (int i = 0; i < string.length(); i++) {
-		int digit = string[i] - 48;
+		long long int digit = string[i] - 48;
 		for (int j = 0; j < i; j++) {
 			digit *= 10;
 		}
@@ -19,9 +19,9 @@ long long int stringToDecimal(std::string string) {
 
 long long int hexToDecimal(std::string hex) {
 	reverse(hex.begin(), hex.end());
-	int dec = 0;
+	long long int dec = 0;
 	for (int i = 0; i < hex.length(); i++) {
-		int digit = 0;
+		long long int digit = 0;
 		if (isalpha(hex[i])) {
 			switch (hex[i]) {
 				case 'A':
@@ -57,9 +57,9 @@ long long int hexToDecimal(std::string hex) {
 
 long long int binaryToDecimal(std::string binary) {
 	reverse(binary.begin(), binary.end());
-	int dec = 0;
+	long long int dec = 0;
 	for (int i = 0; i < binary.length(); i++) {
-		int digit;
+		long long int digit;
 		if (binary[i] == '1') {
 			digit = 1;
 		}
@@ -78,7 +78,7 @@ std::string decimalToHex(long long int dec) {
 	std::string hex = "";
 	for (int i = 0;; i++) {
 		std::string hex_digit = "";
-		int digit = dec % 16;
+		long long int digit = dec % 16;
 		dec /= 16;
 		if (digit > 9) {
 			switch (digit) {
@@ -117,7 +117,7 @@ std::string decimalToHex(long long int dec) {
 std::string decimalToBinary(long long int dec) {
 	std::string binary = "";
 	for (int i = 0;; i++){
-		int digit = dec % 2;
+		long long int digit = dec % 2;
 		dec /= 2;
 		binary += std::to_string(digit);
 		if (dec == 0) {
@@ -168,13 +168,14 @@ int main() {
 			case 'B':
 				operand1 = binaryToDecimal(num1);
 				operand2 = binaryToDecimal(num2);
-				result = operand1 + operand2;
 				std::cout << result << std::endl;
 				switch (operation) {
 					case '+':
+						result = operand1 + operand2;
 						output_file << decimalToBinary(result) << std::endl;
 						break;
 					case '*':
+						result = operand1 * operand2;
 						output_file << decimalToBinary(result) << std::endl;
 						break;
 					default:
@@ -185,12 +186,13 @@ int main() {
 			case 'D':
 				operand1 = stringToDecimal(num1);
 				operand2 = stringToDecimal(num2);
-				result = operand1 + operand2;
 				switch (operation) {
 					case '+':
+						result = operand1 + operand2;
 						output_file << operand1 + operand2 << std::endl;
 						break;
 					case '*':
+						result = operand1 * operand2;
 						output_file << operand1 * operand2 << std::endl;
 						break;
 					default:
@@ -201,12 +203,13 @@ int main() {
 			case 'H':
 				operand1 = hexToDecimal(num1);
 				operand2 = hexToDecimal(num2);
-				result = operand1 + operand2;
 				switch (operation) {
 					case '+':
+						result = operand1 + operand2;
 						output_file << decimalToHex(result) << std::endl;
 						break;
 					case '*':
+						result = operand1 * operand2;
 						output_file << decimalToHex(result) << std::endl;
 						break;
 					default:
