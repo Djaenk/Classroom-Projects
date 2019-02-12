@@ -1,0 +1,23 @@
+Write a complete program that will prompt the user for a 
+digit in the range 5 to 15. Using that digit to determin scale
+display the graphic shown below. Your program must use a nested loop.  
+You may not use the string class.  Zip up and submit your .cpp 
+and .out files to Canvas.
+
+SAMPLE RUN:
+Input an integer in the range 5 to 20: 100<enter>
+Incorrect.  The number is out of range.
+Input an integer in the range 5 to 20: 10<enter>
+
+         *
+        **
+       ***
+      ****
+     *****
+    ******
+   *******
+  ********
+ *********
+**********
+
+
