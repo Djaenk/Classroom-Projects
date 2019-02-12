@@ -108,6 +108,7 @@ int main() {
 		return -1;
 	}
 
+	int line_counter = 0;
 	//perform arithmetic operations while file still has more lines
 	while (input_file.peek() != EOF) {
 		std::string base;
@@ -117,7 +118,6 @@ int main() {
 		long long int operand1;
 		long long int operand2;
 		long long int result;
-		int counter;
 		
 		//I pretty much ignore the purpose of the first line in the input with this
 		if (isdigit(input_file.peek())) {
@@ -181,8 +181,8 @@ int main() {
 			default:
 				output_file << "Invalid numeral base system prefix." << std::endl;
 		}
-	counter++;
-	std::cout << "\r" << counter;
+	line_counter++;
+	std::cout << "\r" << line_counter;
 	}
 	input_file.close();
 	output_file.close();
