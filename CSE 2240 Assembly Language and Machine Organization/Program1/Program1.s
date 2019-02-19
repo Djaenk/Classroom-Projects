@@ -5,6 +5,7 @@
 		LDR		r3,E
 		LDR		r4,F
 		MVN		r5,r1
+		ADD		r5,r5,#1
 		MVN		r6,r3
 		ADD		r7,r2,r5
 		ADD		r8,r4,r6
