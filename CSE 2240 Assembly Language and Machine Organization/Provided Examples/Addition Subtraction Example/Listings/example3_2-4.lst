@@ -1,0 +1,116 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             AddAndSubtract,CODE,READONLY
+    2 00000000                 ENTRY
+    3 00000000         
+    4 00000000 E59F1058        LDR              r1,=2345
+    5 00000004 E3E01002        MOV              r1,#-3
+    6 00000008 E3A02020        MOV              r2,#32
+    7 0000000C E0910002        ADDS             r0,r1,r2
+    8 00000010         
+    9 00000010 E3E04002        MOV              r4,#0xFFFFFFFD
+   10 00000014 E3A05020        MOV              r5,#0x20
+   11 00000018 E0943005        ADDS             r3,r4,r5
+   12 0000001C         
+   13 0000001C E3E08002        MOV              r8,#2_1111111111111111111111111
+1111101
+   14 00000020 E3A09020        MOV              r9,#2_100000
+   15 00000024 E0987009        ADDS             r7,r8,r9
+   16 00000028         
+   17 00000028 E59FA01C        LDR              r10,C
+   18 0000002C E59FB01C        LDR              r11,D
+   19 00000030 E09AC00B        ADDS             r12,r10,r11
+   20 00000034         
+   21 00000034 E59FA018        LDR              r10,E
+   22 00000038 E09AC00A        ADDS             r12,r10,r10
+   23 0000003C         
+   24 0000003C E59FA014        LDR              r10,F
+   25 00000040 E59FB014        LDR              r11,G
+   26 00000044 E09AC00B        ADDS             r12,r10,r11
+   27 00000048 EAFFFFFE 
+                       stop    B                stop
+   28 0000004C FE000000 
+                       C       DCD              0xFE000000
+   29 00000050 02000000 
+                       D       DCD              0x02000000
+   30 00000054 53000000 
+                       E       DCD              0x53000000
+   31 00000058 2F000000 
+                       F       DCD              0x2F000000
+   32 0000005C 81000000 
+                       G       DCD              0x81000000
+   33 00000060                 END
+              00000929 
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\example3_2-4.d -o.\objects\example3_2-4.o -IC:\Keil_v5\ARM\RV31\INC -IC:
+\Keil_v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\INC\Philips --predefine="__EVAL SET
+A 1" --predefine="__UVISION_VERSION SETA 526" --list=.\listings\example3_2-4.ls
+t Example3_2-4.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+AddAndSubtract 00000000
+
+Symbol: AddAndSubtract
+   Definitions
+      At line 1 in file Example3_2-4.s
+   Uses
+      None
+Comment: AddAndSubtract unused
+C 0000004C
+
+Symbol: C
+   Definitions
+      At line 28 in file Example3_2-4.s
+   Uses
+      At line 17 in file Example3_2-4.s
+Comment: C used once
+D 00000050
+
+Symbol: D
+   Definitions
+      At line 29 in file Example3_2-4.s
+   Uses
+      At line 18 in file Example3_2-4.s
+Comment: D used once
+E 00000054
+
+Symbol: E
+   Definitions
+      At line 30 in file Example3_2-4.s
+   Uses
+      At line 21 in file Example3_2-4.s
+Comment: E used once
+F 00000058
+
+Symbol: F
+   Definitions
+      At line 31 in file Example3_2-4.s
+   Uses
+      At line 24 in file Example3_2-4.s
+Comment: F used once
+G 0000005C
+
+Symbol: G
+   Definitions
+      At line 32 in file Example3_2-4.s
+   Uses
+      At line 25 in file Example3_2-4.s
+Comment: G used once
+stop 00000048
+
+Symbol: stop
+   Definitions
+      At line 27 in file Example3_2-4.s
+   Uses
+      At line 27 in file Example3_2-4.s
+Comment: stop used once
+7 symbols
+341 symbols in table

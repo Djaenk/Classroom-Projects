@@ -24,7 +24,7 @@
 		LDR  r10,F
 		LDR  r11,G
 		ADDS r12,r10,r11
-;stop    B    stop
+stop    B    stop
 C		DCD	0xFE000000
 D		DCD	0x02000000
 E		DCD 0x53000000
