@@ -9,7 +9,7 @@ expression, placing the result in register 0:
 
  
 
-r0 = ((-C + D) * (F - E)^2 )^  / 16
+r0 = ((-C + D) * (F - E)^2) / 16
 
  
 
