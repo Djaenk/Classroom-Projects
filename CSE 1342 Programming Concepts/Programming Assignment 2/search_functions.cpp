@@ -2,8 +2,11 @@
 #include <string>
 
 int searchRecursive(std::vector<std::string> &data, std::string query){
-	if (data.back() == query){
-		return data.size();
+	if (data.empty()){
+		return -1;
+	}
+	else if (data.back() == query){
+		return data.size() - 1;
 	}
 	else{
 		data.pop_back();
@@ -12,9 +15,9 @@ int searchRecursive(std::vector<std::string> &data, std::string query){
 }
 
 int searchIterative(std::vector<std::string> &data, std::string query){
-	for (int i = 0; i < data.size(); i++) {
-		if (data[i] == query) {
-			return i;
+	for (int index = 0; index < data.size(); index++){
+		if (data[index] == query){
+			return index;
 		}
 	}
 	return -1;
