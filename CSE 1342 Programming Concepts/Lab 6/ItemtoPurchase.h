@@ -3,10 +3,6 @@
 
 #include <string>
 
-using namespace std;//though namespaces are specified here,
-					//using namespace is necessary because
-					//grading is based on unit tests that don't
-
 class ItemToPurchase {
 	public:
 		ItemToPurchase();

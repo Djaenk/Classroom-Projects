@@ -2,10 +2,6 @@
 #include <string>
 #include "ItemToPurchase.h"
 
-using namespace std;//though namespaces are specified here,
-					//using namespace is necessary because
-					//grading is based on unit tests that don't
-					
 ItemToPurchase::ItemToPurchase(){
 	itemName = "none";
 	itemPrice = 0;
