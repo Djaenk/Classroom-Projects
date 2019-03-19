@@ -9,7 +9,7 @@ int main(){
 	operations.open("operations.csv");
 	operations << "array size,selection sort operations,merge sort operations" << std::endl;
 	for(int n = 2; n <= 100; n++){
-		for(int i = 0; i < 10000; i++){
+		for(int i = 0; i < 1000; i++){
 			int array_selectionsort[n];
 			int array_mergesort[n];
 			for(int j = 0; j < n; j++){
