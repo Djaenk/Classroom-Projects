@@ -2,7 +2,7 @@
 using namespace std;
 
 int SelectionSort(int numbers[], int numbersSize) {
-	int operations = 0;
+	int operations = 0; //every operation also increments the operations integer with a comma operator
 	int i;
 	int j;
 	int indexSmallest;
@@ -24,7 +24,8 @@ int SelectionSort(int numbers[], int numbersSize) {
 	return operations;
 }
 
-void Merge(int numbers[], int i, int j, int k, int &operations) {
+int Merge(int numbers[], int i, int j, int k) {
+	int operations = 0; //every operation also increments the operations integer with a comma operator
 	int mergedSize;                            // Size of merged partition
 	int mergePos;                              // Position to insert merged number
 	int leftPos;                               // Position of elements in left partition
@@ -69,10 +70,11 @@ void Merge(int numbers[], int i, int j, int k, int &operations) {
 	for (++operations,mergePos = 0; ++operations,mergePos < mergedSize; ++operations,++mergePos) {
 		++operations,numbers[i + mergePos] = mergedNumbers[mergePos];
 	}
+	return operations;
 }
 
 int MergeSort(int numbers[], int i, int k) {
-	int operations = 0;
+	int operations = 0; //every operation also increments the operations integer with a comma operator
 	int j;
    
 	if (++operations,i < k) {
@@ -81,7 +83,7 @@ int MergeSort(int numbers[], int i, int k) {
 		operations += MergeSort(numbers, i, j);
 		operations += MergeSort(numbers, j + 1, k);
 		// Merge left and right partition in sorted order
-		Merge(numbers, i, j, k, operations);
+		operations += Merge(numbers, i, j, k);
 	}
 	return operations;
 }
