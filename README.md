@@ -1,0 +1,2 @@
+# Classroom Projects
+This is a repo containing descriptions, source code, and built files of all the programming assignments I have completed in direct relation to working towards an undergraduate computer science degree.
