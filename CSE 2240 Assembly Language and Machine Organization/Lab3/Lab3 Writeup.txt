@@ -1,0 +1,38 @@
+CSE 2240 - N12
+
+04/04/2019
+
+
+
+The program I wrote for Lab Assignment 3 capitalizes and writes to memory whatever string is defined.
+For example, if the string is defined as "Anthony Wang", then the bytes of "ANTHONY WANG" will be written to memory starting at address 0x40000000.
+Another example string could be "1234!@#$qwerQWER", which the program capitalizes and writes to memory the string "1234!@#$QWERQWER".
+
+
+
+On line 15 of the assembly file (pasted below), the AND instruction changes the lowercase letter stored in the char register into an uppercase letter.
+
+capitalize	AND	char,char,#2_01011111
+
+
+Line 16 below shows the indexing scheme for writing to memory using post-index addressing. It increments the memory address by one after storing a character.
+
+write		STRB	char,[memPointer],#1
+
+
+Lines 8,9,10 and 17 shown below are the looping mechanic that iterates over the characters of the string as long as a carriage return is not encountered.
+If the loaded character passes the check for whether it is a return carriage character, then once the loop completes control is passed back to line 8.
+
+Loop		LDRB	char,[loadPointer],#1
+		CMP	char,#0x0D
+		BEQ	Stop
+		B	Loop
+
+
+Lines 12 and 14 branch to instructions that write the character into memory, skipping the capitalization if the character does not fall
+within the range of lowercase letters. Lines 12 through 15 are pasted below.
+
+		CMP	char,#0x61
+		BLT	write
+		CMP	char,#0x7a
+		BGT	write

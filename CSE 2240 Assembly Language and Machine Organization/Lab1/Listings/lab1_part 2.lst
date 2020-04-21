@@ -1,0 +1,80 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             Lab1Part2,CODE,READONLY
+    2 00000000                 ENTRY
+    3 00000000 E59F1028        LDR              r1,X
+    4 00000004 E59F2026        LDR              r2,Y
+    5 00000008 E59F3024        LDR              r3,Z
+    6 0000000C E1A044A1        MOV              r4,r1,LSR #9
+    7 00000010 E1A050A2        MOV              r5,r2,LSR #1
+    8 00000014 E1A062A3        MOV              r6,r3,LSR #5
+    9 00000018 E204403F        AND              r4,r4,#2_0000000000111111
+   10 0000001C E205503F        AND              r5,r5,#2_0000000000111111
+   11 00000020 E206603F        AND              r6,r6,#2_0000000000111111
+   12 00000024 E0847005        ADD              r7,r4,r5
+   13 00000028 E0260007        EOR              r0,r6,r7    ;result of operatio
+                                                            n stored in registe
+                                                            r 0
+   14 0000002C EAFFFFFE 
+                       stop    B                stop
+   15 00000030 F2 20   X       DCW              2_0010000011110010
+   16 00000032 F0 30   Y       DCW              2_0011000011110000
+   17 00000034 F8 C4   Z       DCW              2_1100010011111000
+   18 00000036                 END
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=".\
+objects\lab1_part 2.d" -o".\objects\lab1_part 2.o" -IC:\Keil_v5\ARM\RV31\INC -I
+C:\Keil_v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\INC\Philips --predefine="__EVAL S
+ETA 1" --predefine="__UVISION_VERSION SETA 526" --list=.\listings\lab1_part 2.l
+st "Lab1_Part 2.s"
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Lab1Part2 00000000
+
+Symbol: Lab1Part2
+   Definitions
+      At line 1 in file Lab1_Part
+   Uses
+      None
+Comment: Lab1Part2 unused
+X 00000030
+
+Symbol: X
+   Definitions
+      At line 15 in file Lab1_Part
+   Uses
+      At line 3 in file Lab1_Part
+Comment: X used once
+Y 00000032
+
+Symbol: Y
+   Definitions
+      At line 16 in file Lab1_Part
+   Uses
+      At line 4 in file Lab1_Part
+Comment: Y used once
+Z 00000034
+
+Symbol: Z
+   Definitions
+      At line 17 in file Lab1_Part
+   Uses
+      At line 5 in file Lab1_Part
+Comment: Z used once
+stop 0000002C
+
+Symbol: stop
+   Definitions
+      At line 14 in file Lab1_Part
+   Uses
+      At line 14 in file Lab1_Part
+Comment: stop used once
+5 symbols
+337 symbols in table

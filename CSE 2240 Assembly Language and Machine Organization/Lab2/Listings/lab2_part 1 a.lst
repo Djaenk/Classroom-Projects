@@ -1,0 +1,86 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             Lab2Part1A,CODE,READONLY
+    2 00000000        1 
+                       length  RN               r1
+    3 00000000        2 
+                       pointer RN               r2
+    4 00000000        3 
+                       index   RN               r3
+    5 00000000        4 
+                       character
+                               RN               r4
+    6 00000000                 ENTRY
+    7 00000000 E28F201C        ADR              pointer,String
+    8 00000004 E3A03000        MOV              index,#0
+    9 00000008 E3A01000        MOV              length,#0
+   10 0000000C         Iterate
+   11 0000000C E7D24003        LDRB             character,[pointer,index]
+   12 00000010 E2833001        ADD              index,index,#1
+   13 00000014 E354000D        CMP              character,#0x0D
+   14 00000018 12811001        ADDNE            length,length,#1
+   15 0000001C 1AFFFFFA        BNE              Iterate
+   16 00000020 EAFFFFFE 
+                       Stop    B                Stop
+   17 00000024 43 53 45 
+              2C 20 4C 
+              79 6C 65 
+              20 53 63 
+              68 6F 6F 
+              6C 20 6F 
+              66 20 45 
+              6E 67 69 
+              6E 65 65 
+              72 69 6E 
+              67 0D    String  DCB              "CSE, Lyle School of Engineerin
+g",0x0D
+   18 00000044                 END
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=".\
+objects\lab2_part 1 a.d" -o".\objects\lab2_part 1 a.o" -IC:\Keil_v5\ARM\RV31\IN
+C -IC:\Keil_v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\INC\Philips --predefine="__EV
+AL SETA 1" --predefine="__UVISION_VERSION SETA 526" --list=.\listings\lab2_part
+ 1 a.lst "Lab2_Part 1 A.s"
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Iterate 0000000C
+
+Symbol: Iterate
+   Definitions
+      At line 10 in file Lab2_Part
+   Uses
+      At line 15 in file Lab2_Part
+Comment: Iterate used once
+Lab2Part1A 00000000
+
+Symbol: Lab2Part1A
+   Definitions
+      At line 1 in file Lab2_Part
+   Uses
+      None
+Comment: Lab2Part1A unused
+Stop 00000020
+
+Symbol: Stop
+   Definitions
+      At line 16 in file Lab2_Part
+   Uses
+      At line 16 in file Lab2_Part
+Comment: Stop used once
+String 00000024
+
+Symbol: String
+   Definitions
+      At line 17 in file Lab2_Part
+   Uses
+      At line 7 in file Lab2_Part
+Comment: String used once
+4 symbols
+340 symbols in table

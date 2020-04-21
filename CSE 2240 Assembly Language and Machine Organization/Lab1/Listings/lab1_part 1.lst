@@ -1,0 +1,53 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             Lab1Part1,CODE,READONLY
+    2 00000000                 ENTRY
+    3 00000000 E3A01016        MOV              r1,#22      ;X
+    4 00000004 E3A02011        MOV              r2,#17      ;Y
+    5 00000008 E3A0305F        MOV              r3,#95      ;Z
+    6 0000000C E3A04008        MOV              r4,#8
+    7 00000010 E0050492        MUL              r5,r2,r4    ;8Y
+    8 00000014 E3A06007        MOV              r6,#7
+    9 00000018 E0070693        MUL              r7,r3,r6    ;7Z
+   10 0000001C E0810005        ADD              r0,r1,r5
+   11 00000020 E0800007        ADD              r0,r0,r7
+   12 00000024 E240001B        SUB              r0,r0,#27
+   13 00000028 E1A001A0        LSR              r0,#3       ;result of evaluati
+                                                            on stored in regist
+                                                            er 0
+   14 0000002C EAFFFFFE 
+                       stop    B                stop
+   15 00000030                 END
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=".\
+objects\lab1_part 1.d" -o".\objects\lab1_part 1.o" -IC:\Keil_v5\ARM\RV31\INC -I
+C:\Keil_v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\INC\Philips --predefine="__EVAL S
+ETA 1" --predefine="__UVISION_VERSION SETA 526" --list=.\listings\lab1_part 1.l
+st "Lab1_Part 1.s"
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Lab1Part1 00000000
+
+Symbol: Lab1Part1
+   Definitions
+      At line 1 in file Lab1_Part
+   Uses
+      None
+Comment: Lab1Part1 unused
+stop 0000002C
+
+Symbol: stop
+   Definitions
+      At line 14 in file Lab1_Part
+   Uses
+      At line 14 in file Lab1_Part
+Comment: stop used once
+2 symbols
+334 symbols in table

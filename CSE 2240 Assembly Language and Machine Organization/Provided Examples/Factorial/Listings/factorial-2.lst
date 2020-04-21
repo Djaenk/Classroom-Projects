@@ -1,0 +1,109 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;Page 51 of Hohl text
+    2 00000000         ;int main() {
+    3 00000000         ;     int n = 4;       //r6
+    4 00000000         ;     int result = 1;  //r7
+    5 00000000         ;     while(n > 0) {
+    6 00000000         ;        result = result * n;
+    7 00000000         ;        n--;
+    8 00000000         ;     }
+    9 00000000         ;     cout << result;
+   10 00000000         ;} 
+   11 00000000                 AREA             FactorialCalculation,CODE,READO
+NLY
+   12 00000000                 ENTRY
+   13 00000000         Version1
+   14 00000000 E3A06004        MOV              r6,#4       ;Find factorial of 
+                                                            4
+   15 00000004 E3A07001        MOV              r7,#1       ;if n=0, at least n
+                                                            !=1
+   16 00000008 E3560000 
+                       loop1   CMP              r6,#0
+   17 0000000C 0A000002        BEQ              Version2
+   18 00000010 E0070796        MUL              r7,r6,r7
+   19 00000014 E2466001        SUB              r6,r6,#1    ;decrement n
+   20 00000018 EAFFFFFA        B                loop1       ;do another MUL if 
+                                                            counter > 0
+   21 0000001C         
+   22 0000001C         Version2
+   23 0000001C E3A06004        MOV              r6,#4       ;Find factorial of 
+                                                            4
+   24 00000020 E3A07001        MOV              r7,#1       ;if n=0, at least n
+                                                            !=1
+   25 00000024 E3560000 
+                       loop2   CMP              r6,#0
+   26 00000028 C0070796        MULGT            r7,r6,r7
+   27 0000002C C2466001        SUBGT            r6,r6,#1    ;decrement n
+   28 00000030 CAFFFFFB        BGT              loop2       ;do another MUL if 
+                                                            counter > 0
+   29 00000034         
+   30 00000034 EAFFFFFE 
+                       stop    B                stop        ;loop forever (r7 c
+                                                            ontains n!)
+   31 00000038                 END
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\factorial-2.d -o.\objects\factorial-2.o -IC:\Keil_v5\ARM\RV31\INC -IC:\K
+eil_v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\INC\Philips --predefine="__EVAL SETA 
+1" --predefine="__UVISION_VERSION SETA 526" --list=.\listings\factorial-2.lst F
+actorial-2.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+FactorialCalculation 00000000
+
+Symbol: FactorialCalculation
+   Definitions
+      At line 11 in file Factorial-2.s
+   Uses
+      None
+Comment: FactorialCalculation unused
+Version1 00000000
+
+Symbol: Version1
+   Definitions
+      At line 13 in file Factorial-2.s
+   Uses
+      None
+Comment: Version1 unused
+Version2 0000001C
+
+Symbol: Version2
+   Definitions
+      At line 22 in file Factorial-2.s
+   Uses
+      At line 17 in file Factorial-2.s
+Comment: Version2 used once
+loop1 00000008
+
+Symbol: loop1
+   Definitions
+      At line 16 in file Factorial-2.s
+   Uses
+      At line 20 in file Factorial-2.s
+Comment: loop1 used once
+loop2 00000024
+
+Symbol: loop2
+   Definitions
+      At line 25 in file Factorial-2.s
+   Uses
+      At line 28 in file Factorial-2.s
+Comment: loop2 used once
+stop 00000034
+
+Symbol: stop
+   Definitions
+      At line 30 in file Factorial-2.s
+   Uses
+      At line 30 in file Factorial-2.s
+Comment: stop used once
+6 symbols
+338 symbols in table

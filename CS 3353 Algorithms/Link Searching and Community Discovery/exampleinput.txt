@@ -1,0 +1,19 @@
+or pa03-karate-with-dashes.txt
+ow karate-output.txt
+dfs 1
+bfs 1
+mc 1 16
+dc
+or pa03-football-with-dashes.txt
+ow football-output.txt
+dfs BrighamYoung
+bfs BrighamYoung
+mc BrighamYoung ArkansasState
+dc
+or graph.in
+ow graph.out
+dfs A
+bfs B
+mc D E
+mc A H
+dc

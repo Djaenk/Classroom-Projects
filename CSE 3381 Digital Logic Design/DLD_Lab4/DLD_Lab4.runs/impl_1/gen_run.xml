@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1570209730">
+  <File Type="BITSTR-BMM" Name="three_bit_adder_top_bd.bmm"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="three_bit_adder_top_methodology_drc_opted.rpt"/>
+  <File Type="INIT-TIMING" Name="three_bit_adder_top_timing_summary_init.rpt"/>
+  <File Type="ROUTE-PWR" Name="three_bit_adder_top_power_routed.rpt"/>
+  <File Type="PA-TCL" Name="three_bit_adder_top.tcl"/>
+  <File Type="OPT-TIMING" Name="three_bit_adder_top_timing_summary_opted.rpt"/>
+  <File Type="OPT-DCP" Name="three_bit_adder_top_opt.dcp"/>
+  <File Type="ROUTE-PWR-SUM" Name="three_bit_adder_top_power_summary_routed.pb"/>
+  <File Type="REPORTS-TCL" Name="three_bit_adder_top_reports.tcl"/>
+  <File Type="OPT-DRC" Name="three_bit_adder_top_drc_opted.rpt"/>
+  <File Type="OPT-HWDEF" Name="three_bit_adder_top.hwdef"/>
+  <File Type="PWROPT-DCP" Name="three_bit_adder_top_pwropt.dcp"/>
+  <File Type="PWROPT-DRC" Name="three_bit_adder_top_drc_pwropted.rpt"/>
+  <File Type="PWROPT-TIMING" Name="three_bit_adder_top_timing_summary_pwropted.rpt"/>
+  <File Type="PLACE-DCP" Name="three_bit_adder_top_placed.dcp"/>
+  <File Type="PLACE-IO" Name="three_bit_adder_top_io_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="three_bit_adder_top_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL" Name="three_bit_adder_top_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="three_bit_adder_top_utilization_placed.pb"/>
+  <File Type="PLACE-CTRL" Name="three_bit_adder_top_control_sets_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="three_bit_adder_top_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="three_bit_adder_top_incremental_reuse_pre_placed.rpt"/>
+  <File Type="BG-BGN" Name="three_bit_adder_top.bgn"/>
+  <File Type="PLACE-TIMING" Name="three_bit_adder_top_timing_summary_placed.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="three_bit_adder_top_postplace_pwropt.dcp"/>
+  <File Type="BG-BIN" Name="three_bit_adder_top.bin"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="three_bit_adder_top_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="three_bit_adder_top_physopt.dcp"/>
+  <File Type="PHYSOPT-DRC" Name="three_bit_adder_top_drc_physopted.rpt"/>
+  <File Type="BITSTR-MSK" Name="three_bit_adder_top.msk"/>
+  <File Type="PHYSOPT-TIMING" Name="three_bit_adder_top_timing_summary_physopted.rpt"/>
+  <File Type="ROUTE-ERROR-DCP" Name="three_bit_adder_top_routed_error.dcp"/>
+  <File Type="ROUTE-DCP" Name="three_bit_adder_top_routed.dcp"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="three_bit_adder_top_routed_bb.dcp"/>
+  <File Type="ROUTE-DRC" Name="three_bit_adder_top_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="three_bit_adder_top_drc_routed.pb"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="three_bit_adder_top.ltx"/>
+  <File Type="ROUTE-DRC-RPX" Name="three_bit_adder_top_drc_routed.rpx"/>
+  <File Type="BITSTR-MMI" Name="three_bit_adder_top.mmi"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="three_bit_adder_top_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="three_bit_adder_top_methodology_drc_routed.rpx"/>
+  <File Type="BITSTR-SYSDEF" Name="three_bit_adder_top.sysdef"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="three_bit_adder_top_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-PWR-RPX" Name="three_bit_adder_top_power_routed.rpx"/>
+  <File Type="ROUTE-STATUS" Name="three_bit_adder_top_route_status.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="three_bit_adder_top_route_status.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="three_bit_adder_top_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-TIMING-PB" Name="three_bit_adder_top_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMING-RPX" Name="three_bit_adder_top_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-SIMILARITY" Name="three_bit_adder_top_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-CLK" Name="three_bit_adder_top_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW" Name="three_bit_adder_top_bus_skew_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="three_bit_adder_top_bus_skew_routed.pb"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="three_bit_adder_top_bus_skew_routed.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="three_bit_adder_top_postroute_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="three_bit_adder_top_postroute_physopt_bb.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="three_bit_adder_top_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="three_bit_adder_top_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="three_bit_adder_top_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="three_bit_adder_top_bus_skew_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="three_bit_adder_top_bus_skew_postroute_physopted.pb"/>
+  <File Type="BG-BIT" Name="three_bit_adder_top.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="three_bit_adder_top_bus_skew_postroute_physopted.rpx"/>
+  <File Type="BITSTR-RBT" Name="three_bit_adder_top.rbt"/>
+  <File Type="BITSTR-NKY" Name="three_bit_adder_top.nky"/>
+  <File Type="BG-DRC" Name="three_bit_adder_top.drc"/>
+  <File Type="RDI-RDI" Name="three_bit_adder_top.vdi"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/imports/new/adder.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="C:/Users/47733248/Desktop/sources_1/new/adder.v"/>
+        <Attr Name="ImportTime" Val="1570208978"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/new/full_adder.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="C:/Users/47733248/Desktop/sources_1/new/full_adder.v"/>
+        <Attr Name="ImportTime" Val="1570208971"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/new/half_adder.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="C:/Users/47733248/Desktop/sources_1/new/half_adder.v"/>
+        <Attr Name="ImportTime" Val="1570208973"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/new/adder_top.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="C:/Users/47733248/Desktop/sources_1/new/adder_top.v"/>
+        <Attr Name="ImportTime" Val="1570208974"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/new/three_bit_adder_tb.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="ImportPath" Val="C:/Users/47733248/Desktop/sources_1/new/three_bit_adder_tb.v"/>
+        <Attr Name="ImportTime" Val="1570208973"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="three_bit_adder_top"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PSRCDIR/constrs_1/imports/Downloads/Basys3_Master.xdc">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="C:/Users/47733248/Desktop/constrs_1/imports/Downloads/Basys3_Master.xdc"/>
+        <Attr Name="ImportTime" Val="1569606223"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+      <Desc>Default settings for Implementation.</Desc>
+    </StratHandle>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+  </Strategy>
+</GenRun>

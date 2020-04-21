@@ -1,0 +1,35 @@
+*CSE 2240 PROGRAM 1*
+
+*DUE: Monday, February 18 @ 11:59 PM*
+
+ 
+
+Write an ARM assembly program that will evaluate the following
+expression, placing the result in register 0:
+
+ 
+
+r0 = ((-C + D) * (F - E)^2) / 16
+
+ 
+
+Your program must use the following data definitions:
+
+ 
+
+C       DCD     234
+
+D       DCD     401
+
+E       DCD     9
+
+F       DCD      100
+
+ 
+
+You will need to use the LDR instruction to load C, D, E and F into
+registers.  You will need to use LSR to simulate division by 16. Use a
+hexadecimal calculator to verify that your result is correct. Be sure to
+comment your program well.  Submit your .s file (that is the file
+containing your source code) through Canvas.
+

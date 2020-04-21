@@ -1,0 +1,19 @@
+Flight 1: D, A (Time)
+Path 1: D -> E -> A. Time: 164 Cost: 515.00
+Path 2: D -> E -> B -> A. Time: 332 Cost: 700.00
+Path 3: D -> B -> A. Time: 152 Cost: 395.00
+
+Flight 2: B, B (Time)
+No flight paths exist.
+
+Flight 3: E, E (Time)
+No flight paths exist.
+
+Flight 4: C, A (Time)
+Path 1: C -> B -> A. Time: 452 Cost: 543.00
+Path 2: C -> B -> A. Time: 481 Cost: 592.00
+Path 3: C -> B -> E -> A. Time: 599 Cost: 789.00
+
+Flight 5: D, D (Time)
+No flight paths exist.
+

@@ -1,0 +1,33 @@
+		AREA  AddAndSubtract,CODE,READONLY
+		ENTRY
+		
+		LDR  r1,=2345
+		MOV	 r1,#-3		
+		MOV	 r2,#32
+		ADDS r0,r1,r2
+		
+		MOV	 r4,#0xFFFFFFFD		
+		MOV	 r5,#0x20
+		ADDS r3,r4,r5
+			
+		MOV	 r8,#2_11111111111111111111111111111101		
+		MOV	 r9,#2_100000
+		ADDS r7,r8,r9
+		
+		LDR  r10,C
+		LDR  r11,D
+		ADDS r12,r10,r11
+			
+		LDR  r10,E
+		ADDS r12,r10,r10
+
+		LDR  r10,F
+		LDR  r11,G
+		ADDS r12,r10,r11
+stop    B    stop
+C		DCD	0xFE000000
+D		DCD	0x02000000
+E		DCD 0x53000000
+F		DCD 0x2F000000
+G		DCD 0x81000000
+		END

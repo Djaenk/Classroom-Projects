@@ -1,0 +1,84 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             Lab2Part1B,CODE,READONLY
+    2 00000000        1 
+                       index   RN               r1
+    3 00000000        2 
+                       pointer RN               r2
+    4 00000000        3 
+                       character
+                               RN               r3
+    5 00000000                 ENTRY
+    6 00000000 E28F2014        ADR              pointer,String
+    7 00000004 E3A01000        MOV              index,#0
+    8 00000008         Iterate
+    9 00000008 E7D23001        LDRB             character,[pointer,index]
+   10 0000000C E3530020        CMP              character,#0x20
+   11 00000010 02811001        ADDEQ            index,index,#1
+   12 00000014 0AFFFFFB        BEQ              Iterate
+   13 00000018 EAFFFFFE 
+                       Stop    B                Stop
+   14 0000001C 20 20 20 
+              20 20 20 
+              20 20 20 
+              20 20 20 
+              20 20 20 
+              20 20 20 
+              20 20 20 
+              20 20 20 
+              20 48 65 
+              6C 6C 6F 
+              2C 20 57 
+              6F 72 6C 
+              64 0D    String  DCB              "                         Hello
+, World",0x0D
+   15 00000042                 END
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=".\
+objects\lab2_part 1 b.d" -o".\objects\lab2_part 1 b.o" -IC:\Keil_v5\ARM\RV31\IN
+C -IC:\Keil_v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\INC\Philips --predefine="__EV
+AL SETA 1" --predefine="__UVISION_VERSION SETA 526" --list=.\listings\lab2_part
+ 1 b.lst "Lab2_Part 1 B.s"
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Iterate 00000008
+
+Symbol: Iterate
+   Definitions
+      At line 8 in file Lab2_Part
+   Uses
+      At line 12 in file Lab2_Part
+Comment: Iterate used once
+Lab2Part1B 00000000
+
+Symbol: Lab2Part1B
+   Definitions
+      At line 1 in file Lab2_Part
+   Uses
+      None
+Comment: Lab2Part1B unused
+Stop 00000018
+
+Symbol: Stop
+   Definitions
+      At line 13 in file Lab2_Part
+   Uses
+      At line 13 in file Lab2_Part
+Comment: Stop used once
+String 0000001C
+
+Symbol: String
+   Definitions
+      At line 14 in file Lab2_Part
+   Uses
+      At line 6 in file Lab2_Part
+Comment: String used once
+4 symbols
+339 symbols in table

@@ -1,0 +1,4 @@
+cat,Elroy,1,false
+dog,Charlie,2,bone
+rabbit,Squeekers,3,5
+cat,Billy,2,true

@@ -1,0 +1,85 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             Program2,CODE,READONLY
+    2 00000000        0 
+                       randomInteger
+                               RN               0
+    3 00000000        1 
+                       pointer RN               1
+    4 00000000        2 
+                       counter RN               2
+    5 00000000        3 
+                       constant1
+                               RN               3
+    6 00000000        4 
+                       constant2
+                               RN               4
+    7 00000000        5 
+                       constant3
+                               RN               5
+    8 00000000        6 
+                       temp    RN               6
+    9 00000000                 ENTRY
+   10 00000000 E59F0034        LDR              randomInteger,=0x13245099
+   11 00000004 E3A01101        LDR              pointer,=0x40000000
+   12 00000008 E3A02014        MOV              counter,#20
+   13 0000000C E59F302C        LDR              constant1,=214013
+   14 00000010 E59F402C        LDR              constant2,=2531011
+   15 00000014 E59F502C        LDR              constant3,=0x7FFF
+   16 00000018 E0060390 
+                       loop    MUL              temp,randomInteger,constant1
+   17 0000001C E0866004        ADD              temp,temp,constant2
+   18 00000020 E1A00826        LSR              randomInteger,temp,#16
+   19 00000024 E0000005        AND              randomInteger,constant3
+   20 00000028 E1C100B0        STRH             randomInteger,[pointer]
+   21 0000002C E2811002        ADD              pointer,pointer,#2
+   22 00000030 E2522001        SUBS             counter,#1
+   23 00000034 1AFFFFF7        BNE              loop
+   24 00000038 EAFFFFFE 
+                       stop    B                stop
+   25 0000003C                 END
+              13245099 
+              000343FD 
+              00269EC3 
+              00007FFF 
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\program2.d -o.\objects\program2.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5
+\ARM\CMSIS\Include -IC:\Keil_v5\ARM\INC\Philips --predefine="__EVAL SETA 1" --p
+redefine="__UVISION_VERSION SETA 526" --list=.\listings\program2.lst ..\Program
+2.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Program2 00000000
+
+Symbol: Program2
+   Definitions
+      At line 1 in file ..\Program2.s
+   Uses
+      None
+Comment: Program2 unused
+loop 00000018
+
+Symbol: loop
+   Definitions
+      At line 16 in file ..\Program2.s
+   Uses
+      At line 23 in file ..\Program2.s
+Comment: loop used once
+stop 00000038
+
+Symbol: stop
+   Definitions
+      At line 24 in file ..\Program2.s
+   Uses
+      At line 24 in file ..\Program2.s
+Comment: stop used once
+3 symbols
+344 symbols in table

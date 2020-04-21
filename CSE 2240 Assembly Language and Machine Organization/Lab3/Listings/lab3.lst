@@ -1,0 +1,102 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             Lab3,CODE,READONLY
+    2 00000000        0 
+                       loadPointer
+                               RN               r0
+    3 00000000        1 
+                       memPointer
+                               RN               r1
+    4 00000000        2 
+                       char    RN               r2
+    5 00000000                 ENTRY
+    6 00000000 E28F002C        ADR              loadPointer,string
+    7 00000004 E3A01101        LDR              memPointer,=0x40000000
+    8 00000008 E4D02001 
+                       Loop    LDRB             char,[loadPointer],#1
+    9 0000000C E352000D        CMP              char,#0x0D
+   10 00000010 0A000006        BEQ              Stop
+   11 00000014 E3520061        CMP              char,#0x61
+   12 00000018 BA000002        BLT              write
+   13 0000001C E352007A        CMP              char,#0x7a
+   14 00000020 CA000000        BGT              write
+   15 00000024 E202205F 
+                       capitalize
+                               AND              char,char,#2_01011111
+   16 00000028 E4C12001 
+                       write   STRB             char,[memPointer],#1
+   17 0000002C EAFFFFF5        B                Loop
+   18 00000030 EAFFFFFE 
+                       Stop    B                Stop
+   19 00000034 41 6E 74 
+              68 6F 6E 
+              79 20 57 
+              61 6E 67 
+              0D       string  DCB              "Anthony Wang",0x0D
+   20 00000041                 END
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\lab3.d -o.\objects\lab3.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMS
+IS\Include -IC:\Keil_v5\ARM\INC\Philips --predefine="__EVAL SETA 1" --predefine
+="__UVISION_VERSION SETA 526" --list=.\listings\lab3.lst Lab3.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Lab3 00000000
+
+Symbol: Lab3
+   Definitions
+      At line 1 in file Lab3.s
+   Uses
+      None
+Comment: Lab3 unused
+Loop 00000008
+
+Symbol: Loop
+   Definitions
+      At line 8 in file Lab3.s
+   Uses
+      At line 17 in file Lab3.s
+Comment: Loop used once
+Stop 00000030
+
+Symbol: Stop
+   Definitions
+      At line 18 in file Lab3.s
+   Uses
+      At line 10 in file Lab3.s
+      At line 18 in file Lab3.s
+
+capitalize 00000024
+
+Symbol: capitalize
+   Definitions
+      At line 15 in file Lab3.s
+   Uses
+      None
+Comment: capitalize unused
+string 00000034
+
+Symbol: string
+   Definitions
+      At line 19 in file Lab3.s
+   Uses
+      At line 6 in file Lab3.s
+Comment: string used once
+write 00000028
+
+Symbol: write
+   Definitions
+      At line 16 in file Lab3.s
+   Uses
+      At line 12 in file Lab3.s
+      At line 14 in file Lab3.s
+
+6 symbols
+341 symbols in table

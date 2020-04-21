@@ -1,0 +1,7 @@
+test,duration(microseconds)
+small sentiment analysis,728937
+
+Uniform Sequential Allocation test took 5976 microseconds
+Varied Sequential Allocation test took 61367 microseconds
+Uniform Random Allocation test took 9330 microseconds
+Varied Random Allocation test took 15412 microseconds

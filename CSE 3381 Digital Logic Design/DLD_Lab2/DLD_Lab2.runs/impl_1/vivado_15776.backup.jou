@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
+# IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+# Start of session at: Fri Sep 20 11:34:39 2019
+# Process ID: 15776
+# Current directory: U:/DLD_Lab2/DLD_Lab2.runs/impl_1
+# Command line: vivado.exe -log and_gate_tb.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source and_gate_tb.tcl -notrace
+# Log file: U:/DLD_Lab2/DLD_Lab2.runs/impl_1/and_gate_tb.vdi
+# Journal file: U:/DLD_Lab2/DLD_Lab2.runs/impl_1\vivado.jou
+#-----------------------------------------------------------
+source and_gate_tb.tcl -notrace

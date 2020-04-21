@@ -1,0 +1,14 @@
+version: "3.3"
+
+services:
+  mysql:
+    build: ./db
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 3351:3306
+
+  app:
+    build: .
+    ports:
+      - 8080:8080

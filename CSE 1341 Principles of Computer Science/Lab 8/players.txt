@@ -1,0 +1,9 @@
+Amazing Amy,Ringer
+Bozo Bob,Dud
+Quick Carl,Ringer
+Dizzy Diana,Dud
+Average Ed,Average
+Fast Francis,Ringer
+So-So Sarah,Average
+Hitter Hank,Ringer
+Dizzy Izzy,Dud
