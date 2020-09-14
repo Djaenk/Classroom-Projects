@@ -13,7 +13,7 @@
 		MUL		r7,r6,r6	;r7 holds (F - E)^2	
 		MUL		r8,r5,r7	;r8 holds ((-C + D) * (F - E)^2)
 		LSR		r0,r8,#4	;via LSR by four bits, r0 holds ((-C + D) * (F - E)^2) / 16
-stop	B	stop
+stop		B		stop
 		
 C		DCD     234
 D		DCD     401
