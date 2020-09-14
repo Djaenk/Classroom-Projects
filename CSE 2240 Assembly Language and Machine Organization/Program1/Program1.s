@@ -17,6 +17,6 @@ stop	B	stop
 		
 C		DCD     234
 D		DCD     401
-E       DCD     9
-F       DCD     100
+E       	DCD     9
+F       	DCD     100
 		END
