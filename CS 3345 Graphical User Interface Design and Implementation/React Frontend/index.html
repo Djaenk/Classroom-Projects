@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Recommended order for implementation: -->
+<!-- add rules to styles.css that hide all section tags under main not having a class of 'active' -->
+<!-- scheduler (js file) -->
+<!-- homeView (js file, html below & css) -->
+<!-- calendartView (js file, html below & css) -->
+<!-- appointmentView (js file, html below & css) -->
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+
+  <script>
+    var app;
+  </script>
+
+  <script src="scripts/viewer.js"></script>
+  <script src="scripts/scheduler.js"></script>
+  <script src="scripts/views/calendar.js"></script>
+  <script src="scripts/views/home.js"></script>
+  <script src="scripts/views/appointment.js"></script>
+</head>
+
+<body onload="app.homeView.load()">
+  <header>
+    <h1>Tutoring Center</h1>
+  </header>
+  <main>
+    <section id="homeView">
+      <h2>OUR TUTORS</h2>
+      <ul id="tutors_list">
+      </ul>
+    </section>
+    <section id="calendarView">
+      <h2>SCHEDULE FOR <span id="schedule_name"></span></h2>
+      <p>Tutoring hours are Monday-Thursday from 5pm-7pm</p>
+      <table id="schedule">
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Availability</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <button class="return" onclick="app.homeView.load()">Return to List</button>
+    </section>
+    <section id="appointmentView">
+      <h2>NEW APPOINTMENT</h2>
+      <form id="appointment_form">
+        <label for="name">Name</label><br>
+        <input name="name" id="name_input" type="text"><br>
+        <label for="notes">Notes</label><br>
+        <textarea name="notes" id="notes_input"></textarea><br>
+      </form>
+      <button class="return" onclick="app.homeView.load()">Cancel</button>
+      <button class="enter" onclick="app.appointmentView.save()">Book</button>
+    </section>
+  </main>
+</body>
+</html>
