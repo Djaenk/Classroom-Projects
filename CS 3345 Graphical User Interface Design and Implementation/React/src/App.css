@@ -1,0 +1,121 @@
+#product-details{
+	width: 1280px;
+	margin: 0 auto;
+}
+
+#product{
+	display: flex;
+	background: none;
+}
+
+.review-count{
+	color: #666;
+}
+
+#review-placeholder{
+	margin: 1em;
+}
+
+.review{
+	display: inline-block;
+	border-radius: 5px;
+	border: 1px solid #ddd;
+}
+
+.review-header{
+	border-bottom: solid 1px #ddd;
+	padding: 10px 20px;
+}
+
+.review-name, .review-date, .review-comment{
+	padding: 10px 20px;
+}
+
+.review-name, .review-date{
+	color: gray;
+}
+
+.review-date{
+	float: right;
+}
+
+.review-date::after{
+	float: clear;
+}
+
+form{
+	margin-top: 20px;
+	display: flex;
+	flex-flow: wrap;
+	border-radius: 5px;
+	border: solid #ddd 1px;
+}
+
+#form-header{
+	width: 100%;
+	background-color: #888;
+	color: white;
+	padding: .5em;
+	border-radius: 5px 5px 0 0;
+}
+
+label{
+	width: 100%;
+}
+
+#name-input-group{
+	margin: 20px;
+	width: 75%;
+}
+
+#rating-input-group{
+	margin: 20px;
+	width: calc(25% - 80px);
+	display: flex;
+	flex-flow: wrap;
+}
+
+#rating-input{
+	flex-basis: 30px;
+	flex-grow: 2;
+	margin-right: 10px;
+}
+
+hr{
+	flex-basis: 100%;
+	height: 0;
+	margin: 0;
+	border: 0;
+}
+
+.stars{
+	font-size: 1.5rem;
+	font-style: normal;
+	position: relative;
+	top: -.1em;
+}
+
+.stars i{
+	font-style: normal;
+}
+
+.full-star:after{
+	content: "\2605";
+}
+
+.empty-star:after{
+	content: "\2606";
+}
+
+#comment-input-group{
+	width: 100%;
+	margin: 20px;
+}
+
+#submit-button-group{
+	margin: 20px;
+}
+
+h4{
+	font-weight: 600 !important;
+}
