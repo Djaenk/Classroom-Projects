@@ -11,7 +11,7 @@ export const ReviewList = props =>
 				<li className="review" key={i}>
 					<div className="review-header"><Rating value={review.rating}/></div>
 					<div className="review-date">{review.date}</div>
-					<div className="review-name">{review.name}</div>
+					<div className="review-name">{review.userName}</div>
 					<div className="review-comment">"{review.comment}"</div>
 				</li>)
 		}

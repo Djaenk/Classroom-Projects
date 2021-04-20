@@ -10,12 +10,12 @@ export class ReviewForm extends React.Component{
 	};
 
 	onSubmission(){
-		let date = new Date();
+		let date = new Date().toString().substr(0, 24);
 		this.props.addReview(new ProductReview(
-			this.state.name,
-			date.toDateString(),
+			this.state.userName,
 			this.state.rating,
-			this.state.comment
+			this.state.comment,
+			date
 		));
 
 		this.setState({
@@ -30,7 +30,7 @@ export class ReviewForm extends React.Component{
 			<h4 id="form-header">Add Review</h4>
 			<div id="name-input-group">
 				<label htmlFor="name">Your Name</label>
-				<input type="text" id="name-input" name="name" className="form-control" value={this.state.name} onChange={event => this.setState({name: event.target.value})}/>
+				<input type="text" id="name-input" name="name" className="form-control" value={this.state.userName} onChange={event => this.setState({userName: event.target.value})}/>
 			</div>
 			<div id="rating-input-group">
 				<label htmlFor="rating">Rating</label>

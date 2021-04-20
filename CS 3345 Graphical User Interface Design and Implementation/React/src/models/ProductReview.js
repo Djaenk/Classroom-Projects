@@ -1,8 +1,8 @@
 export class ProductReview{
-	constructor(name, date, rating, comment){
-		this.name = name;
-		this.date = date;
+	constructor(userName, rating, comment, date){
+		this.userName = userName;
 		this.rating = rating;
 		this.comment = comment;
+		this.date = date;
 	}
 }

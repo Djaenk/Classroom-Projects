@@ -1,11 +1,32 @@
-#product-details{
+#header{
 	width: 1280px;
 	margin: 0 auto;
+	background-color: #333;
+	color: white;
+	font-size: 18pt;
+}
+
+#product-details, #product-list, #cart{
+	width: 1280px;
+	margin: 0 auto;
+}
+
+.product-name{
+	height: 2.5em;
+}
+
+.product-price{
+	top: 60%;
+	right: 10%;
 }
 
 #product{
 	display: flex;
 	background: none;
+}
+
+.add-cart{
+	margin-left: calc(100% - 150px);
 }
 
 .review-count{
