@@ -15,6 +15,7 @@ void* eliminateMultiples(void* param) {
 }
 
 int main() {
+	// Initialize n, t, P, and thread attributes
 	printf("Value of n: ");
 	scanf("%d", &n);
 
@@ -25,19 +26,25 @@ int main() {
 
 	printf("Number of threads: ");
 	scanf("%d", &t);
-
+	
 	pthread_t tid[t];
 	pthread_attr_t attr;
 	pthread_attr_init(&attr);
 
-	for (int i = 0; i < t; i++) {
+	// Loop through n, join thread in tid[] if one was previously created
+	for (int i = 0; i < (n / 2); i++) {
+		// memory allocated in this loop will be freed in thread
 		int* factor = (int*)malloc(sizeof(int));
 		*factor = i + 2;
-		pthread_create(&(tid[i]), &attr, eliminateMultiples, (void*)(factor));
+		if (i >= t) {
+			pthread_join(tid[i % t], NULL);
+		}
+		pthread_create(&(tid[i % t]), &attr, eliminateMultiples, (void*)(factor));
 	}
 
-	for (int i = t; i > 0; i--) {
-		pthread_join(tid[i - 1], NULL);
+	// Join remaining threads, print primes, and clean up
+	for (int i = 0; i < t && i < n; i++) {
+		pthread_join(tid[i], NULL);
 	}
 
 	for (int i = 2; i < n; i++) {
