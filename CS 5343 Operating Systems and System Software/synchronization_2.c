@@ -28,8 +28,6 @@ void* player(void* param) {
   int points;
   int value;
 
-  start:
-
   pthread_mutex_lock(game->mutex); // Begin critical section: Take slot
   for (k = 0; game->scores[k] != -1; k++);
   game->scores[k] = 0;
@@ -37,9 +35,10 @@ void* player(void* param) {
   pthread_mutex_unlock(game->mutex); // End critical section
 
   // Wait for start signal
-  while(!game->active);
+  while(game->active == 0);
 
-  while (game->active) {
+  // Play until the game is over or until player scores reaches 100 or more
+  while (game->active == 1 && game->scores[k] < 100) {
     pthread_mutex_lock(game->mutex); // Begin critical section: Player pop
     if (queue_size(game->queue)) {
       ++game->held;
@@ -81,13 +80,9 @@ void* player(void* param) {
     }
   }
 
-  // Wait for scores to be reset
-  while(game->scores[k] > -1);
-
-  // If player did not win then take new slot, else terminate thread
-  if (game->scores[k] == -1) {
-    goto start;
-  }
+  // Signal that player has left
+  printf("%s (thread %d) is leaving with a score of %d.\n", data->name, k, game->scores[k]);
+  game->scores[k] = -2;
   pthread_exit(NULL);
 }
 
@@ -132,92 +127,59 @@ int main(int argc, char* argv[]){
   game_init(&game, N);
   pthread_t threads[N];
   PlayerData currently_playing[N];
+  int player_index, num;
 
   // Create all threads and assign first N players to their threads
-  printf("Number of threads : %d   |   Number of objects: %d\n\n", N, T);
+  printf("Number of threads : %d   |   Number of players: %d\n\n", N, p);
   for (int i = 0; i < N; ++i) {
     currently_playing[i].game = &game;
     currently_playing[i].name = players[i];
     printf("Thread %d started\n", i);
     pthread_create(threads + i, NULL, player, (void*)(currently_playing + i));
   }
+  player_index = N;
 
-  // Loop until no players remain in the list
-  for (int i = N; i < p; ++i) {
-    // Print players in this game
-    printf("\nGame %d players: ", i);
-    for (int j = 0; j < N; ++j) {
-      printf("%s, ", currently_playing[j].name);
+  // Wait until initial players have taken their slots before starting game
+  while (!game.active) {
+    for (int i = 0; i < N; ++i) {
+      i = game.scores[i] < 0 ? -1 : i;
     }
-    printf("\n");
+    game.active = 1;
+  }
 
-    game_play(&game, T);
-
-    // Determine the slot of the winning player
-    int winner_slot = 0;
-    for (int j = 0; j < N; ++j) {
-      winner_slot = game.scores[j] > game.scores[winner_slot] ? j : winner_slot;
+  // Generate numbers indefinitely
+  while (game.active < 2) {
+    pthread_mutex_lock(game.mutex); // Begin critical section: Dealer push
+    if (queue_size(game.queue) <= N) {
+      num = (rand() % 40) + 1000;
+      printf("Dealer is pushing %d to the queue.\n", num);
+      queue_push(game.queue, num);
+      queue_print(game.queue);
     }
+    pthread_mutex_unlock(game.mutex); // End critical section
 
-    // Determine the name of the winning player and which thread they were
-    char* name, *winner_name;
-    int score;
-    int winner_thread;
-    for (int j = 0; j < N; ++j) {
-      name = currently_playing[j].name;
-      score = game.scores[currently_playing[j].slot];
-      printf("%s scored %d points.\n", name, score);
-      if (currently_playing[j].slot == winner_slot) {
-        winner_name = name;
-        winner_thread = j;
+    // Check if any player has left
+    for (int i = 0; i < N; ++i) {
+      if (game.scores[currently_playing[i].slot] == -2) {
+        // Terminate player's thread
+        pthread_join(threads[i], NULL);
+
+        // Check if there are more players waiting
+        if (player_index < p) {
+          // Create a thread for the next player
+          game.scores[currently_playing[i].slot] = -1;
+          currently_playing[i].name = players[player_index++];
+          pthread_create(threads + i, NULL, player, (void*)(currently_playing + i));
+        }
+        else {
+          // End the game if there are no more players waiting
+          game.active = 2;
+        }
       }
     }
-    printf("%s wins game %d.\n", winner_name, i - N);
-
-    // Reset scores and reslot losing players
-    for (int j = 0; j < N; ++j) {
-      game.scores[j] = (winner_slot != j) - 2;
-    }
-
-    // Terminate thread of winning player and create thread for next player
-    pthread_join(threads[winner_thread], NULL);
-    currently_playing[winner_thread].name = players[i];
-    game.scores[winner_slot] = -1;
-    pthread_create(threads + winner_thread, NULL, player, (void*)(currently_playing + winner_thread));
   }
-
-  // Print players in final game
-  printf("\nGame %d players: ", p - N);
-  for (int j = 0; j < N; ++j) {
-    printf("%s, ", currently_playing[j].name);
-  }
-  printf("\n");
-
-  // Play final game with last player and print result
-  game_play(&game, T);
-  int winner_slot = 0;
-  for (int j = 0; j < N; ++j) {
-    winner_slot = game.scores[j] > game.scores[winner_slot] ? j : winner_slot;
-  }
-  char* name, *winner_name;
-  int score;
-  int winner_thread;
-  for (int j = 0; j < N; ++j) {
-    name = currently_playing[j].name;
-    score = game.scores[currently_playing[j].slot];
-    printf("%s scored %d points.\n", name, score);
-    if (currently_playing[j].slot == winner_slot) {
-      winner_name = name;
-      winner_thread = j;
-    }
-  }
-  printf("%s wins game %d\n.", winner_name, p - N);
 
   // Terminate all threads
-  for (int j = 0; j < N; ++j) {
-    game.scores[j] = -2;
-  }
-
   for (int i = 0; i < N; ++i) {
     pthread_join(threads[i], NULL);
   }

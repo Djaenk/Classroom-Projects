@@ -21,8 +21,11 @@ void game_exit(Game* g) {
 
 void game_play(Game* g, int T) {
   int num;
+
+  // Signal the game to start
   g->active = 1;
 
+  // Generate T numbers
   for (int i = 0; i < T;) {
     pthread_mutex_lock(g->mutex); // Begin critical section: Dealer push
     if (queue_size(g->queue) <= g->N) {
@@ -35,6 +38,7 @@ void game_play(Game* g, int T) {
     pthread_mutex_unlock(g->mutex); // End critical section
   }
 
+  // Wait for all threads to finish
   while (g->active) {
     pthread_mutex_lock(g->mutex); // Begin critical section: Count numbers
     g->active = g->held + queue_size(g->queue);

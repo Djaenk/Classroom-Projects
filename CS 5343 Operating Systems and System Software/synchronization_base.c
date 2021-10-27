@@ -25,6 +25,7 @@ void* player(void* param) {
   game->scores[k] = 0;
   pthread_mutex_unlock(game->mutex); // End critical section
 
+  // Wait for game start signal
   while(!game->active);
 
   while (game->active) {
@@ -91,14 +92,17 @@ int main(int argc, char* argv[]){
   pthread_t threads[N];
   int num;
 
+  // Create all threads
   printf("Number of threads : %d   |   Number of objects: %d\n\n", N, T);
   for (int i = 0; i < N; ++i) {
     printf("Thread %d started\n", i);
     pthread_create(threads + i, NULL, player, (void*)&game);
   }
 
+  // Signal game to start and generate numbers
   game_play(&game, T);
 
+  // Terminate threads and print final score for each player
   for (int i = 0; i < N; ++i) {
     pthread_join(threads[i], NULL);
     printf("Final score for player %d : %d\n", i, game.scores[i]);
