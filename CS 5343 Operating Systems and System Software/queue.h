@@ -1,4 +1,6 @@
 #include <pthread.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 /**
  * @brief FIFO queue data structure

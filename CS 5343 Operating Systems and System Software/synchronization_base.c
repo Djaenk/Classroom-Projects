@@ -2,55 +2,10 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <time.h>
+#include "numbergame.h"
 #include "queue.h"
 
 #define MS_TO_NS 1000000
-
-/**
- * @brief Game structure maintains resources to handle a single game
- */
-typedef struct Game {
-  Queue* queue;
-
-  /**
-   * N stores the total possible number of players in the game
-   * held stores the count of numbers held by sleeping players
-   * active is a boolean signaling if the game is active
-   * scores is an array containing the score of each player
-   */
-  int N, held, active, *scores;
-
-  /** mutex to limit game resource access to one player or dealer at a time */
-  pthread_mutex_t* mutex;
-} Game;
-
-/**
- * @brief Initializes a Game struct and allocates necessary memory
- * @param g is a pointer to the Game to initialize
- * @param N is the number of players the game
- */
-void game_init(Game* g, int N) {
-  g->queue = queue_create(2 * N + 1);
-  g->N = N;
-  g->held = 0;
-  g->active = 0;
-  g->scores = (int*)malloc(N * sizeof(int));
-  for (int i = 0; i < N; ++i) {
-    g->scores[i] = -1;
-  }
-  g->mutex = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t));
-  pthread_mutex_init(g->mutex, NULL);
-}
-
-/**
- * @brief Uninitializes a Game and deallocates its contents
- * @param g is a pointer to the Game to exit
- */
-void game_exit(Game* g) {
-  queue_destroy(g->queue);
-  pthread_mutex_destroy(g->mutex);
-  free(g->mutex);
-}
 
 /**
  * @brief Player function to be run in a thread
@@ -65,9 +20,9 @@ void* player(void* param) {
   int points;
   int value;
 
-  pthread_mutex_lock(game->mutex); // Begin critical section: Take seat
-  for (k = 0; game->scores[k] >= 0; k++);
-  game->scores[k]++;
+  pthread_mutex_lock(game->mutex); // Begin critical section: Take slot
+  for (k = 0; game->scores[k] != -1; k++);
+  game->scores[k] = 0;
   pthread_mutex_unlock(game->mutex); // End critical section
 
   while(!game->active);
@@ -122,6 +77,7 @@ void* player(void* param) {
  */
 int main(int argc, char* argv[]){
   int N, T;
+
   if (argc > 2) {
     N = atoi(argv[1]);
     T = atoi(argv[2]);
@@ -141,25 +97,7 @@ int main(int argc, char* argv[]){
     pthread_create(threads + i, NULL, player, (void*)&game);
   }
 
-  game.active = 1;
-
-  for (int i = 0; i < T;) {
-    pthread_mutex_lock(game.mutex); // Begin critical section: Dealer push
-    if (queue_size(game.queue) <= N) {
-      num = (rand() % 40) + 1;
-      printf("Dealer is pushing %d to the queue.\n", num);
-      queue_push(game.queue, num);
-      queue_print(game.queue);
-      ++i;
-    }
-    pthread_mutex_unlock(game.mutex); // End critical section
-  }
-
-  while (game.active) {
-    pthread_mutex_lock(game.mutex); // Begin critical section: Count numbers
-    game.active = game.held + queue_size(game.queue);
-    pthread_mutex_unlock(game.mutex); // End critical section
-  }
+  game_play(&game, T);
 
   for (int i = 0; i < N; ++i) {
     pthread_join(threads[i], NULL);
