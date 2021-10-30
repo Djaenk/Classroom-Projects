@@ -30,7 +30,7 @@ void game_play(Game* g, int T) {
     pthread_mutex_lock(g->mutex); // Begin critical section: Dealer push
     if (queue_size(g->queue) <= g->N) {
       num = (rand() % 40) + 1;
-      printf("\nDealer is pushing %d to the queue.\n", num);
+      printf("Dealer is pushing %d to the queue.\n", num);
       queue_push(g->queue, num);
       queue_print(g->queue);
       ++i;
@@ -38,7 +38,7 @@ void game_play(Game* g, int T) {
     pthread_mutex_unlock(g->mutex); // End critical section
   }
 
-  // Wait for all threads to finish
+  // Wait until no numbers remain in play before ending game
   while (g->active) {
     pthread_mutex_lock(g->mutex); // Begin critical section: Count numbers
     g->active = g->held + queue_size(g->queue);

@@ -28,6 +28,7 @@ void* player(void* param) {
   // Wait for game start signal
   while(!game->active);
 
+  // Play game while there are numbers in play
   while (game->active) {
     pthread_mutex_lock(game->mutex); // Begin critical section: Player pop
     if (queue_size(game->queue)) {
@@ -50,7 +51,7 @@ void* player(void* param) {
         value = x - 2;
       }
       queue_print(game->queue);
-      pthread_mutex_unlock(game->mutex); // End critical section
+      pthread_mutex_unlock(game->mutex); // End critical section: Player pop
 
       request.tv_nsec = x * MS_TO_NS; 
       nanosleep(&request, NULL);
@@ -66,7 +67,7 @@ void* player(void* param) {
       pthread_mutex_unlock(game->mutex); // End critical section
     }
     else {
-      pthread_mutex_unlock(game->mutex); // End critical section
+      pthread_mutex_unlock(game->mutex); // End critical section: Player pop
     }
   }
 
@@ -87,6 +88,7 @@ int main(int argc, char* argv[]){
     return -1;
   }
 
+  srand(time(NULL));
   Game game;
   game_init(&game, N);
   pthread_t threads[N];

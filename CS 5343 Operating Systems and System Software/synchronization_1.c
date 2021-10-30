@@ -128,6 +128,7 @@ int main(int argc, char* argv[]){
     return -1;
   }
 
+  srand(time(NULL));
   Game game;
   game_init(&game, N);
   pthread_t threads[N];
@@ -151,6 +152,7 @@ int main(int argc, char* argv[]){
     }
     printf("\n");
 
+    // Start and deal a full game
     game_play(&game, T);
 
     // Determine the slot of the winning player
@@ -217,7 +219,6 @@ int main(int argc, char* argv[]){
   for (int j = 0; j < N; ++j) {
     game.scores[j] = -2;
   }
-
   for (int i = 0; i < N; ++i) {
     pthread_join(threads[i], NULL);
   }

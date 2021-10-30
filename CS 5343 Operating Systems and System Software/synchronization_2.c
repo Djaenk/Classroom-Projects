@@ -81,7 +81,7 @@ void* player(void* param) {
   }
 
   // Signal that player has left
-  printf("%s (thread %d) is leaving with a score of %d.\n", data->name, k, game->scores[k]);
+  printf("===== %s (thread %d) is leaving with a score of %d =====\n\n", data->name, k, game->scores[k]);
   game->scores[k] = -2;
   pthread_exit(NULL);
 }
@@ -123,6 +123,7 @@ int main(int argc, char* argv[]){
     return -1;
   }
 
+  srand(time(NULL));
   Game game;
   game_init(&game, N);
   pthread_t threads[N];
@@ -151,7 +152,7 @@ int main(int argc, char* argv[]){
   while (game.active < 2) {
     pthread_mutex_lock(game.mutex); // Begin critical section: Dealer push
     if (queue_size(game.queue) <= N) {
-      num = (rand() % 40) + 1000;
+      num = (rand() % 40) + 1;
       printf("Dealer is pushing %d to the queue.\n", num);
       queue_push(game.queue, num);
       queue_print(game.queue);
