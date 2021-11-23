@@ -39,11 +39,16 @@ void* philosopher(void* param) {
 
   // Request tools while philosopher doesn't have all tools
   while (queue_size(request_queue)) {
-    ++tool_request[queue_pop(request_queue)];
-    if (time(&t) % 2 == 0 && queue_size(request_queue)) {
+    if (time(&t) % 2){
       ++tool_request[queue_pop(request_queue)];
     }
-    granted = Request(philosopher->state, philosopher->table, tool_request);
+    else {
+      int request_count = 2 + (t / 25) % (queue_size(request_queue) - 1);
+      for (int i = 0; i < request_count; ++i) {
+        ++tool_request[queue_pop(request_queue)];
+      }
+    }
+    granted = Request2(philosopher->state, philosopher->table, tool_request);
 
     pthread_mutex_lock(philosopher->mutex); // Begin "critical" section: write to stdout
     printf("%*s requests", 20, philosopher->name);

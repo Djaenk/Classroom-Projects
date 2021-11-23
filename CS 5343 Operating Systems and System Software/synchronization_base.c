@@ -9,6 +9,7 @@
 
 /**
  * @brief Player function to be run in a thread
+ * 
  * @param param is the void pointer passed to the thread
  */
 void* player(void* param) {

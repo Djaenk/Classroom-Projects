@@ -29,6 +29,7 @@ void* philosopher(void* param) {
   time_t t;
   struct timespec sleep_request = {1, 0};
   Queue* request_queue = queue_create(philosopher->tools, philosopher->tool_count);
+  Queue* held_queue = queue_create(NULL, philosopher->tool_count);
   int tool_request[state_resource_count(philosopher->state)];
   memset(tool_request, 0, state_resource_count(philosopher->state) * sizeof(int));
   int granted;
@@ -39,11 +40,16 @@ void* philosopher(void* param) {
 
   // Request tools while philosopher doesn't have all tools
   while (queue_size(request_queue)) {
-    ++tool_request[queue_pop(request_queue)];
-    if (time(&t) % 2 == 0 && queue_size(request_queue)) {
+    if (time(&t) % 2){
       ++tool_request[queue_pop(request_queue)];
     }
-    granted = Request(philosopher->state, philosopher->table, tool_request);
+    else {
+      int request_count = 2 + (t / 25) % (queue_size(request_queue) - 1);
+      for (int i = 0; i < request_count; ++i) {
+        ++tool_request[queue_pop(request_queue)];
+      }
+    }
+    granted = Request2(philosopher->state, philosopher->table, tool_request);
 
     pthread_mutex_lock(philosopher->mutex); // Begin "critical" section: write to stdout
     printf("%*s requests", 20, philosopher->name);
@@ -54,19 +60,33 @@ void* philosopher(void* param) {
         if (granted < 1) {
           queue_push(request_queue, i);
         }
+        else {
+          queue_push(held_queue, i);
+        }
       }
     }
     if (granted == 1) {
       printf(", granted\n");
+      pthread_mutex_unlock(philosopher->mutex); // End "critical" section
     }
     else {
-      printf(", denied (%d)\n", granted);
+      printf(", denied (code %d)\n", granted);
+      pthread_mutex_unlock(philosopher->mutex); // End "critical" section
+
+      sleep_request.tv_nsec = 0;
+      nanosleep(&sleep_request, NULL);
+
+      int held = queue_pop(held_queue);
+      queue_push(request_queue, held);
+      ++tool_request[held];
+      Release(philosopher->state, philosopher->table, tool_request);
+      --tool_request[held];
     }
-    pthread_mutex_unlock(philosopher->mutex); // End "critical" section
 
     sleep_request.tv_nsec = (t % 1000) * MS_TO_NS;
     nanosleep(&sleep_request, NULL);
   }
+
   sleep_request.tv_sec = 2;
   sleep_request.tv_nsec = 0;
   nanosleep(&sleep_request, NULL);
