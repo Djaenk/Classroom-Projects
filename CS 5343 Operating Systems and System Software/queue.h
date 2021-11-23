@@ -1,6 +1,7 @@
 #include <pthread.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 /**
  * @brief FIFO queue data structure
@@ -12,7 +13,7 @@ typedef struct Queue Queue;
  * @param q is a pointer to the Queue to be initialized
  * @param capacity is the capacity of the initialized Queue
  */
-Queue* queue_create(int capacity);
+Queue* queue_create(int* initial, int capacity);
 
 /**
  * @brief Destroys a Queue and deallocates its buffer

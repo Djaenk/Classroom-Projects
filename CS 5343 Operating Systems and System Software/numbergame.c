@@ -1,7 +1,7 @@
 #include "numbergame.h"
 
 void game_init(Game* g, int N) {
-  g->queue = queue_create(2 * N + 1);
+  g->queue = queue_create(NULL, 2 * N + 1);
   g->N = N;
   g->held = 0;
   g->active = 0;

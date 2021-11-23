@@ -13,9 +13,12 @@ struct Queue {
   int capacity, size, begin, end;
 };
 
-Queue* queue_create(int capacity) {
+Queue* queue_create(int* initial, int capacity) {
   Queue* q = (Queue*)malloc(sizeof(Queue));
   q->buffer = (int*)malloc(capacity * sizeof(int));
+  if (initial != NULL) {
+    memcpy(q->buffer, initial, capacity);
+  }
   q->capacity = capacity;
   q->size = 0;
   q->begin = 0;
