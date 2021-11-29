@@ -1,5 +1,6 @@
 #include "graph_coloring.hpp"
-#include <iostream>
+
+std::vector<int> degree_at_removal;
 
 Coloring
 greedy_coloring(const Graph& graph_, const Ordering& order) {
@@ -25,6 +26,7 @@ greedy_coloring(const Graph& graph_, const Ordering& order) {
 
 Ordering
 smallest_last_vertex_ordering(const Graph& graph_) {
+	degree_at_removal.assign(graph_.size(), 0);
 	std::vector<int> degree(graph_.size());
 	std::vector<std::list<int>> degrees(graph_.size());
 	std::vector<std::list<int>::iterator> pointers(graph_.size());
@@ -39,10 +41,11 @@ smallest_last_vertex_ordering(const Graph& graph_) {
 	bool removing = true;
 	while (removing) {
 		removing = false;
-		for (auto& d : degrees) {
-			for (const int& v : d) {
+		for (int d = 0; d < degrees.size(); ++d) {
+			for (const int& v : degrees[d]) {
+				degree_at_removal[v] = d;
 				ordering.emplace_back(v);
-				d.erase(pointers[v]);
+				degrees[d].erase(pointers[v]);
 				removed[v] = true;
 				for(const int& neighbor : graph_[v]) {
 					if (!removed[neighbor]) {
@@ -152,4 +155,16 @@ depth_first_search_ordering(const Graph& graph_) {
 		}
 	}
 	return ordering;
+}
+
+std::string
+coloring_to_string(Coloring coloring_) {
+	std::string s = "";
+	for (int i = 0; i < coloring_.size(); ++i) {
+		s += std::to_string(i);
+		s += ", ";
+		s += std::to_string(coloring_[i]);
+		s += "\n";
+	}
+	return s;
 }

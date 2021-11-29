@@ -1,4 +1,5 @@
 #include "graph_generation.hpp"
+#include <iostream>
 
 std::default_random_engine rng;
 
@@ -71,12 +72,14 @@ create_uniform_random_graph(int vertices_, int edges_) {
 Graph
 create_skewed_random_graph(int vertices_, int edges_) {
 	Graph graph(vertices_);
-	std::uniform_int_distribution<int> distribution(1, pow(vertices_, 4));
-	std::unordered_set<int> created(2 * edges_);
-	int edge;
+	std::uniform_real_distribution<double> distribution(0.0, 1.0);
+	std::unordered_set<int> created(4 * edges_);
+	double edge;
 	std::pair<int, int> v_pair;
 	for (int i = 0; i < edges_; ++i) {
-		edge = vertices_ * vertices_ - (int)sqrt(distribution(rng));
+		edge = distribution(rng);
+		edge = pow(edge, 1.25);
+		edge *= vertices_ * vertices_;
 		v_pair = unpair(edge);
 		if (v_pair.first != v_pair.second && created.find(edge) == created.end()) {
 			graph[v_pair.first].emplace_back(v_pair.second);
@@ -86,6 +89,7 @@ create_skewed_random_graph(int vertices_, int edges_) {
 			--i;
 		}
 		created.emplace(edge);
+		created.emplace(pair(v_pair.second, v_pair.first));
 	}
 	return graph;
 }
@@ -93,14 +97,14 @@ create_skewed_random_graph(int vertices_, int edges_) {
 Graph
 create_normal_random_graph(int vertices_, int edges_) {
 	Graph graph(vertices_);
-	std::normal_distribution<double> distribution(1, vertices_ * vertices_ - 2);
-	std::unordered_set<int> created(2 * edges_);
+	std::lognormal_distribution<double> distribution(0.0, 1.0);
+	std::unordered_set<int> created(4 * edges_);
 	int edge;
 	std::pair<int, int> v_pair;
 	for (int i = 0; i < edges_; ++i) {
-		edge = distribution(rng);
+		edge = distribution(rng) * vertices_ * vertices_;
 		v_pair = unpair(edge);
-		if (v_pair.first != v_pair.second && created.find(edge) == created.end()) {
+		if (edge > 0 && edge < vertices_ * vertices_ - 1 && v_pair.first != v_pair.second && created.find(edge) == created.end()) {
 			graph[v_pair.first].emplace_back(v_pair.second);
 			graph[v_pair.second].emplace_back(v_pair.first);
 		}
@@ -108,6 +112,7 @@ create_normal_random_graph(int vertices_, int edges_) {
 			--i;
 		}
 		created.emplace(edge);
+		created.emplace(pair(v_pair.second, v_pair.first));
 	}
 	return graph;
 }
