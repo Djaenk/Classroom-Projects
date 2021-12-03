@@ -17,6 +17,13 @@ class LockManager:
     elif len(self.s_locks[k]) == 0:
       self.x_locks[k] = tid
       return True
+    elif len(self.s_locks[k]) == 1:
+      if tid in self.s_locks[k]:
+        self.s_locks[k].remove(tid)
+        self.x_locks[k] = tid
+        return True
+      else:
+        return False
     else:
       return False
     
