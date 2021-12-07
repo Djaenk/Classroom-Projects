@@ -1,7 +1,11 @@
+from collections import deque
+
 class Transaction:
 
-  def __init__(self, k):
+  def __init__(self, tid, k, operations):
+    self.tid = tid
     self.local = [None] * k
+    self.operations = deque(tuple(op.split()) for op in operations)
 
   def Read(self, db, source, dest):
     self.local[dest] = db.Read(source)

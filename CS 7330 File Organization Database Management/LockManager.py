@@ -2,14 +2,14 @@ from Database import Database
 
 class LockManager:
 
-  def __init__(self):
-    self.x_locks = [None] * len(Database.data)
-    self.s_locks = []
-    for k in Database.data:
-      self.s_locks.append(set())
+  def __init__(self, db):
+    self.x_locks = [None] * len(db.data)
+    self.s_locks = [set() for value in db.data]
 
   def Request(self, tid, k, is_s_lock):
-    if self.x_locks[k] is not None:
+    if self.x_locks[k] == tid:
+      return True
+    elif self.x_locks[k] is not None:
       return False
     elif is_s_lock:
       self.s_locks[k].add(tid)
@@ -17,13 +17,10 @@ class LockManager:
     elif len(self.s_locks[k]) == 0:
       self.x_locks[k] = tid
       return True
-    elif len(self.s_locks[k]) == 1:
-      if tid in self.s_locks[k]:
-        self.s_locks[k].remove(tid)
-        self.x_locks[k] = tid
-        return True
-      else:
-        return False
+    elif len(self.s_locks[k]) == 1 and tid in self.s_locks[k]:
+      self.s_locks[k].remove(tid)
+      self.x_locks[k] = tid
+      return True
     else:
       return False
     

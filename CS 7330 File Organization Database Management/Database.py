@@ -1,7 +1,7 @@
 class Database:
 
     data = []
-    def __init__(self, k, nonzero):
+    def __init__(self, k, nonzero = True):
 
          if nonzero:
             for i in range(k):
