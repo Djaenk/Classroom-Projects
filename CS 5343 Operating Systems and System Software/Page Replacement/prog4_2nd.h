@@ -19,9 +19,9 @@ class PRDS_2nd {
 		 * @brief Chooses page to swap using modified second chance algorithm if necessary
 		 * 
 		 * @param page page to load
-		 * @return int -1 if no swap occurred, else the page that was replaced
+		 * @return int -1 if page exists in memory, -2 if fault but no swap, else the page to replace
 		 */
-		int PRDS_2nd::push(int page) {
+		int push(int page) {
 			// If the page is already queued, increment its reference count, up to three
 			if (references.count(page)) {
 				references[page] = std::min(++references[page], 3);
@@ -73,17 +73,20 @@ class PRDS_2nd {
  */
 int Page_Replacement_2nd(std::vector<int>& pages, int nextpage, PRDS_2nd* p) {
 	int replaced = p->push(nextpage);
-	if (replaced < 0) {
-		// If no swap is necessary, try to find the existing page or an empty page
+	if (replaced == -1) {
+		// Try to find the existing page
 		for (int i = 0; i < pages.size(); ++i) {
 			if (pages[i] == nextpage) return -1;
+		}
+	}
+	if (replaced == -2) {
+		// Find next empty space in memory
+		for (int i = 0; i < pages.size(); ++i) {
 			if (pages[i] == -1) return i;
 		}
 	}
-	else {
-		for (int i = 0; i < pages.size(); ++i) {
-			if (pages[i] == replaced) return i;
-		}
+	for (int i = 0; i < pages.size(); ++i) {
+		if (pages[i] == replaced) return i;
 	}
 	return pages.size();
 }

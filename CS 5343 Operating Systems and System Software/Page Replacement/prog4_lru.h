@@ -10,7 +10,7 @@ class PRDS_LRU{
 		 * 
 		 * @param pages number of pages available in main memory
 		 */
-		PRDS_LRU::PRDS_LRU(int pages) {
+		PRDS_LRU(int pages) {
 			capacity = pages;
 			page_map.reserve(pages);
 		}
@@ -19,9 +19,9 @@ class PRDS_LRU{
 		 * @brief Loads page into memory, swapping using LRU algorithm if necessary
 		 * 
 		 * @param page page to load
-		 * @return int -1 if no swap occurred, else the page that was replaced
+		 * @return int -1 if page exists in memory, -2 if fault but no swap, else the page to replace
 		 */
-		int PRDS_LRU::push(int page) {
+		int push(int page) {
 			// If page is found in page list, refresh it to be most recently used
 			if (page_map.count(page)) {
 				page_list.erase(page_map[page]);
@@ -34,7 +34,7 @@ class PRDS_LRU{
 			if (page_list.size() < capacity) {
 				page_list.emplace_front(page);
 				page_map[page] = page_list.begin();
-				return -1;
+				return -2;
 			}
 
 			// If conditions fail, page fault has occurred and swap is necessary
@@ -67,17 +67,20 @@ class PRDS_LRU{
  */
 int Page_Replacement_LRU(std::vector<int>& pages, int nextpage, PRDS_LRU* p) {
 	int replaced = p->push(nextpage);
-	if (replaced < 0) {
-		// If no swap is necessary, try to find the existing page or an empty page
+	if (replaced == -1) {
+		// Try to find the existing page
 		for (int i = 0; i < pages.size(); ++i) {
 			if (pages[i] == nextpage) return -1;
+		}
+	}
+	if (replaced == -2) {
+		// Find next empty space in memory
+		for (int i = 0; i < pages.size(); ++i) {
 			if (pages[i] == -1) return i;
 		}
 	}
-	else {
-		for (int i = 0; i < pages.size(); ++i) {
-			if (pages[i] == replaced) return i;
-		}
+	for (int i = 0; i < pages.size(); ++i) {
+		if (pages[i] == replaced) return i;
 	}
 	return pages.size();
 }
