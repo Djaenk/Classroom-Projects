@@ -9,14 +9,14 @@
 
 unsigned int PRDS_seed = 0;
 
-class PRDS_MyOwn {
+class PRDS_Belady {
 	public:
 		/**
-		 * @brief Construct a new PRDS_MyOwn object and predict future page accesses
+		 * @brief Construct a new PRDS_Belady object and predict future page accesses
 		 * 
 		 * @param pages number of pages available in main memory
 		 */
-		PRDS_MyOwn(int pages) {
+		PRDS_Belady(int pages) {
 			capacity = pages;
 		}
 
@@ -110,7 +110,7 @@ class PRDS_MyOwn {
  * @param p pointer to data structure used to calculate page replacement
  * @return int index of page to replace
  */
-int Page_Replacement_MyOwn(std::vector<int>& pages, int nextpage, PRDS_MyOwn* p) {
+int Page_Replacement_MyOwn(std::vector<int>& pages, int nextpage, PRDS_Belady* p) {
 	p->generate();
 	int replaced = p->load(nextpage);
 	if (replaced == -1) {
